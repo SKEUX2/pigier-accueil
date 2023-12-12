@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIGIER CI - Page d'Accueil</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #333;
+        }
+
+        form {
+            max-width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .message-container, .whatsapp-message {
+            max-width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.2em;
+        }
+
+        .whatsapp-button {
+            background-color: #25d366;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+        }
+
+        @media only screen and (max-width: 600px) {
+            form, .message-container, .whatsapp-message {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>PIGIER CI</h1>
+
+    <form id="accueilForm">
+        <label for="nom">Nom complet:</label>
+        <input type="text" id="nom" name="nom" required>
+
+        <label for="classe">Classe:</label>
+        <input type="text" id="classe" name="classe" required>
+
+        <button type="button" onclick="debloquerMessage()">Débloquer Message</button>
+
+        <div id="messageContainer" class="message-container"></div>
+
+        <div id="whatsappMessage" class="whatsapp-message"></div>
+
+        <button class="whatsapp-button" id="whatsappButton" onclick="partagerViaWhatsApp()">Chers élèves, veuillez le partager avec vos parents</button>
+    </form>
+
+    <script>
+        function debloquerMessage() {
+            var nom = document.getElementById("nom").value;
+            var classe = document.getElementById("classe").value;
+
+            if (nom.trim() === '' || classe.trim() === '') {
+                alert("Veuillez remplir tous les champs avant de débloquer le message.");
+                return;
+            }
+
+            var pigierCiTitle = "<h1>PIGIER CI</h1>";
+            var message = "Bonjour chers parents,\n\nEn raison de problèmes techniques, nous ne pouvons pas délivrer directement les messages sur vos numéros. Merci pour la compréhension.\n\nSur ce, commençons.\n\nDes frais se sont ajoutés à la scolarité des élèves affectés par l'État dans notre école PIGIERCI, notamment le vôtre \"" + nom + "\" en classe de \"" + classe + "\".\n\nVeuillez SVP payer ces frais qui s'élèvent à hauteur de 15000FCFA. Nous vous demanderons de les payer par transaction mobile (Orange, Moov, Mtn...) en raison du fléau des élèves qui détournent l'argent des parents.\n\nUne fois la transaction faite, veuillez nous envoyer les preuves à ce numéro 0565308522 sur lequel seront également effectuées les transactions. Merci et bonne journée.";
+
+            var messageContainer = document.getElementById("messageContainer");
+            messageContainer.innerHTML = pigierCiTitle + "<div class='message'>" + message + "</div>";
+            messageContainer.style.display = "block";
+
+            // Afficher le bouton WhatsApp
+            var whatsappButton = document.getElementById("whatsappButton");
+            whatsappButton.style.display = "block";
+        }
+
+        // Fonction pour partager via WhatsApp
+        function partagerViaWhatsApp() {
+            var nom = document.getElementById("nom").value;
+            var classe = document.getElementById("classe").value;
+            var pigierCiTitle = "<h1>PIGIER CI</h1>";
+            var whatsappMessage = "Chers élèves,\n\nVeuillez partager le message suivant avec vos parents :\n\n" + pigierCiTitle + "Bonjour chers parents,\n\nEn raison de problèmes techniques, nous ne pouvons pas délivrer directement les messages sur vos numéros. Merci pour la compréhension.\n\nSur ce, commençons.\n\nDes frais se sont ajoutés à la scolarité des élèves affectés par l'État dans notre école PIGIERCI, notamment le vôtre \"" + nom + "\" en classe de \"" + classe + "\".\n\nVeuillez SVP payer ces frais qui s'élèvent à hauteur de 15000FCFA. Nous vous demanderons de les payer par transaction mobile (Orange, Moov, Mtn...) en raison du fléau des élèves qui détournent l'argent des parents.\n\nUne fois la transaction faite, veuillez nous envoyer les preuves à ce numéro 0565308522 sur lequel seront également effectuées les transactions. Merci et bonne journée.";
+
+            var whatsappMessageContainer = document.getElementById("whatsappMessage");
+            whatsappMessageContainer.innerHTML = "<div class='whatsapp-message'>" + whatsappMessage + "</div>";
+            whatsappMessageContainer.style.display = "block";
+        }
+    </script>
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+</html>
